@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<!-- Name: Robert Morton
+		Date: 11/1/22
+		Course Number and Section: CSC 499 001
+		Quarter: Fall 2022
+		Project: 1 -->
+
+    
+    
+    <head>
+		<!-- meta means data about the document -->
+		<meta charset = "UTF-8">
+		<meta name = "csc499" content = "Project 1">
+
+        <link rel="stylesheet" type = "text/css" href="./CSS/card.css">
+		
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+		<!-- Title tags changes the title-->
+		<Title class = "see">Black Jack</title>
+	</head>
+   
+    <body>
+        
+		<h1>Welcome to Black Jack</h1>
+        
+		
+        
+        <table id = "table">
+			<caption><div id = "message">Hello There</div><div id = "main"><a href = "../p1.html">Back to Main</a></div></caption>
+            <thead>
+                <tr>
+                    <td><div class = "see">Dealer's Cards:</div></td>
+                
+                </tr>
+                <tr>
+                    <td>
+                        <div class = "cardHolder" id = "d1">Card</div>
+                    </td>  
+                    <td>
+                        <div class = "cardHolder"  id = "d2">Card</div>
+                     </td>
+                     <td>
+                        <div class = "cardHolder"  id = "d3">Card</div>
+                     </td>
+                     <td>
+                        <div class = "cardHolder"  id = "d4">Card</div>
+                     </td>
+                     <td>
+                        <div class = "cardHolder"  id = "d5">Card</div>
+                     </td>
+                </tr>
+                <tr><td><div class = "see">Your Cards:</div></td></tr>
+                <tr>
+                    <td>
+                        
+                        <div class = "cardHolder"  id = "u1">Card</div>
+                    </td>  
+                    <td>
+                        <div class = "cardHolder"  id = "u2">Card</div>
+                    </td>
+                    <td>
+                        <div class = "cardHolder"  id = "u3">Card</div>
+                    </td>
+                    <td>
+                        <div class = "cardHolder"  id = "u4">Card</div>
+                    </td>
+                    <td>
+                        <div class = "cardHolder"  id = "u5">Card</div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class = "see">Your Bread Crumbs</div>
+                        <div class = "see" id = "uMoney"></div>
+                    </td>
+                    <td>
+                        <div class = "see">Place your Bet</div>
+                        <div id = "bets"><input class = "number" type="number" id = "bet"></div>
+                    </td>
+					<td><input class = "buttons" type="submit" id = "hit" value="Hit" ></td>
+                    <td><input class = "buttons"  type="submit" id = "stand" value="Stand" ></td>
+                    <td><input class = "buttons"  type = "submit" id = "new_game" value = "Deal" ></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <script src = "./javascript/Black.js"></script>
+    </body>
+        
+
+
+        
+
+</html>
