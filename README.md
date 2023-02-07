@@ -11,12 +11,12 @@ This game follows the base game rules provided by the following link
 https://bicyclecards.com/how-to-play/blackjack/
 
 ## Features to be implemented 
-~~Base rules~~
-Reconfigurating betting
-Implementing doulbling down
-Rules link
-Addiction link
-Music in background
-Winners noise
-Faliure's noise
+1. ~~Base rules~~
+2. Reconfigurating betting
+3. Implementing doulbling down
+4. Rules link
+5. Addiction link
+6. Music in background
+7. Winners noise
+8. Faliure's noise
 
