@@ -1,12 +1,6 @@
 //Classes that I need
 //Constructors for deck
 
-/* Name: Robert Morton
-		Date: 11/1/22
-		Course Number and Section: CSC 499 001
-		Quarter: Fall 2022
-		Project: 1 
- */
 // Card constructor 
 class Card {
     constructor(value, suit) {
@@ -287,7 +281,7 @@ function startGame(){
 }
 
 
-// when the player whens or loses this displays the outcome
+// when the player wins or loses this displays the outcome
 function GameOver(switchy, string){
     if(switchy)
 	{
