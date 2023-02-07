@@ -11,7 +11,7 @@ This game follows the base game rules provided by the following link
 https://bicyclecards.com/how-to-play/blackjack/
 
 ## Features to be implemented 
-~~~Base rules~~~
+~~Base rules~~
 Reconfigurating betting
 Implementing doulbling down
 Rules link
