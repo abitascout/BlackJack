@@ -3,7 +3,7 @@
 
 
 ## How to run the Black Jack Game
-Download all the files in this github and Open up the Jach.html document to get started
+Download all the files in this github and Open up the Jack.html document to get started
 
 ## Base game rules.
 This game follows the base game rules provided by the following link
