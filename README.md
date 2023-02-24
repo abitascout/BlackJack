@@ -3,8 +3,7 @@
 
 
 ## How to run the Black Jack Game
-I will post the link to  my pseronal website that Louisiana Tech provides. This is where the game is hosted.
-http://www2.latech.edu/~rhm012/
+Download all the files in this github and Open up the Jach.html document to get started
 
 ## Base game rules.
 This game follows the base game rules provided by the following link

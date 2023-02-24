@@ -115,6 +115,7 @@ var playerCount = 0;
 var dealerCount = 0;
 
 
+
 let Deck = new deck();
 
 let gameprogress = false;
@@ -146,7 +147,7 @@ var money =document.getElementById("uMoney");
 var message = document.getElementById("message");
 money.innerHTML = moneyData;
 
-//Sound Effect by felix_quinol from Pixabay
+//Sound Effect by guitarguy1985 from Pixabay
 var tie = new Audio('Audio/tie.mp3')
 //Sound Effect by FunWithSound from Pixabay
 var winner = new Audio('Audio/success.mp3');
@@ -382,11 +383,15 @@ function checking()
 
 // when the player wins or loses this displays the outcome
 function GameOver(switchy, string){
+    var blackjackCheck = totalNum(playerCards, playerCount)
     switch(switchy)
     {
         case true:
             winner.play();
-            moneyData +=bet;
+            if(playerCount == 2 && blackjackCheck == 21)
+                moneyData += ( 1.5 * bet);
+            else
+                moneyData +=bet;
 		    money.innerHTML = "";
 		    money.innerHTML = moneyData;
 		    localStorage.setItem("fromLocal", moneyData);
