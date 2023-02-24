@@ -141,9 +141,19 @@ var playerSide = [u1,u2,u3,u4,u5];
 var standBtn = document.getElementById("stand");
 var hitBtn = document.getElementById("hit");
 var newGameBtn = document.getElementById("new_game");
+var reset = document.getElementById("reset")
 var money =document.getElementById("uMoney");
 var message = document.getElementById("message");
 money.innerHTML = moneyData;
+
+//Sound Effect by felix_quinol from Pixabay
+var tie = new Audio('Audio/tie.mp3')
+//Sound Effect by FunWithSound from Pixabay
+var winner = new Audio('Audio/success.mp3');
+//Sound Effect by kirbydx from Pixabay
+var loser = new Audio('Audio/loser.mp3');
+//Sound Effect by Breviceps from Pixabay
+var shuffle = new Audio('Audio/shuffle.mp3');
 
 
 
@@ -154,6 +164,51 @@ function startup(){
     standBtn.disabled = true;
     hitBtn.disabled = true;
     newGameBtn.disabled = false;
+}
+
+//Starts up the game
+function startGame(){
+    if(!gameprogress)
+        return;
+    
+    if(betInput.value > 0 && Number(betInput.value) <= moneyData && moneyData > 0)
+    {
+        betInput.disabled = true;
+        bet = Number(betInput.value);
+    }
+    else
+    {
+        message.innerHTML = "Invalid Bet";
+        return;
+    }
+
+    for(i = 0; i <5; i++ )
+    {
+        dealerSide[i].innerHTML=" ";
+        playerSide[i].innerHTML=" ";
+
+
+    }
+    winner.pause();
+    winner.currentTime = 0;
+    loser.pause();
+    loser.currentTime = 0;
+    tie.pause();
+    tie.currentTime =0;
+    Deck.shuffle;
+    shuffle.play()
+    playerCount = 0;
+    dealerCount = 0;
+    cardDeal(playerCards, playerSide, playerCount, false, Deck);
+    playerCount++;
+    cardDeal(dealerCards, dealerSide, dealerCount, false, Deck);
+    dealerCount++;
+    cardDeal(playerCards, playerSide, playerCount, false, Deck);
+    playerCount++;
+    cardDeal(dealerCards, dealerSide, dealerCount, true, Deck);
+    dealerCount++;
+    calculating();
+
 }
 
 
@@ -196,7 +251,7 @@ function totalNum(hand, count)
             }
         }
     }
-    if ((total + 10 <= 21) && ace && ace_count < 3)
+    if (((total + 10) <= 21) && ace)
       total += 10;
    return total;
 }
@@ -218,7 +273,7 @@ function calculating()
 			tempstring = "./Images/PNG-cards-1.3/".concat(v.concat(".png"));
 			tempcode = "<img src ='".concat(tempstring).concat("'></>");
 			dealerSide[1].innerHTML = tempcode;
-            GameOver(false, "You both have Blackjack, but dealer wins on ties.");
+            GameOver("tied", "You both have Blackjack.");
         }
         else
         {
@@ -237,85 +292,17 @@ function calculating()
 		dealerSide[1].innerHTML = tempcode;
         GameOver(true, "You have Blackjack.");
 	}
+    else if (playerCount == 5)
+    {
+        var v = dealerCards[1].string;
+		tempstring = "./Images/PNG-cards-1.3/".concat(v.concat(".png"));
+		tempcode = "<img src ='".concat(tempstring).concat("'></>");
+		dealerSide[1].innerHTML = tempcode;
+        GameOver(true, "You got to 5 cards without busting.")
+    }
     else
         message.innerHTML = "You have " + playTotal +".  Hit or Stand?";
 
-}
-
-//Starts up the game
-function startGame(){
-    if(!gameprogress)
-        return;
-    
-    if(betInput.value > 0 && Number(betInput.value) <= moneyData && moneyData > 0)
-    {
-        betInput.disabled = true;
-        bet = Number(betInput.value);
-    }
-    else
-    {
-        message.innerHTML = "Invalid Bet";
-        return;
-    }
-
-    for(i = 0; i <5; i++ )
-    {
-        dealerSide[i].innerHTML=" ";
-        playerSide[i].innerHTML=" ";
-
-
-    }
-    Deck.shuffle;
-    playerCount = 0;
-    dealerCount = 0;
-    cardDeal(playerCards, playerSide, playerCount, false, Deck);
-    playerCount++;
-    cardDeal(dealerCards, dealerSide, dealerCount, false, Deck);
-    dealerCount++;
-    cardDeal(playerCards, playerSide, playerCount, false, Deck);
-    playerCount++;
-    cardDeal(dealerCards, dealerSide, dealerCount, true, Deck);
-    dealerCount++;
-    calculating();
-
-}
-
-
-// when the player wins or loses this displays the outcome
-function GameOver(switchy, string){
-    if(switchy)
-	{
-        moneyData +=bet;
-		money.innerHTML = "";
-		money.innerHTML = moneyData;
-		localStorage.setItem("fromLocal", moneyData);
-	}
-    else{
-        moneyData -=bet;
-		money.innerHTML = ""
-		money.innerHTML = moneyData;
-		localStorage.setItem("fromLocal", moneyData);
-	}
-    standBtn.disabled = true;
-    hitBtn.disabled = true;
-    newGameBtn.disabled = false;
-	betInput.disabled = false;
-    message.innerHTML = string;
-    gameprogress = false;
-    if(money <=0 )
-        message.innerHTML = "busted";
-    else{
-        
-        standBtn.disabled = true;
-        hitBtn.disabled = true;
-        newGameBtn.disabled = false;
-        betInput.disabled = false;
-        playerCards = [];
-        dealerCards = [];
-        dealerCount = 0;
-        playerCount = 0;
-        
-    }
 }
 
 // checks to see if the dealer is can hit or has to stay
@@ -360,7 +347,7 @@ function dealerCheck()
 			tempstring = "./Images/PNG-cards-1.3/".concat(v.concat(".png"));
 			tempcode = "<img src ='".concat(tempstring).concat("'></>");
 			dealerSide[1].innerHTML = tempcode;
-            GameOver(false, "You both have tied at "+playTotal +" but tie goes to the dealer.")
+            GameOver("tied", "You both have tied at "+playTotal +".")
         }
 
     }
@@ -373,10 +360,6 @@ function checking()
     {
         GameOver(false, "You went over 21.");
     }
-    else if(playerCards.count == 5 && playerTotal < 21)
-    {
-        GameOver(true, "You got to 5 cards without busting.");
-    }
     else if (playTotal == 21)
     {
         var v = dealerCards[1].string;
@@ -385,6 +368,11 @@ function checking()
         dealerSide[1].innerHTML = tempcode;
         dealerCheck();
     }
+    else if(playerCount == 5 && playTotal <= 21)
+    {
+
+        GameOver(true, "You got to 5 cards without busting.");
+    }
     else{
         message.innerHTML = "You have "+ playTotal + ". Wanna Hit or Stand?";
         hitBtn.disabled = false;
@@ -392,8 +380,63 @@ function checking()
     }
 }
 
-//the hit function for when the player takes a hit
-function hit(){
+// when the player wins or loses this displays the outcome
+function GameOver(switchy, string){
+    switch(switchy)
+    {
+        case true:
+            winner.play();
+            moneyData +=bet;
+		    money.innerHTML = "";
+		    money.innerHTML = moneyData;
+		    localStorage.setItem("fromLocal", moneyData);
+            break;
+        case false:
+            loser.play();
+            moneyData -=bet;
+		    money.innerHTML = ""
+		    money.innerHTML = moneyData;
+		    localStorage.setItem("fromLocal", moneyData);
+            break;
+        case "tied":
+            tie.play();
+            money.innerHTML = ""
+            money.innerHTML = moneyData;
+            localStorage.setItem("fromLocal", moneyData);
+            break;
+
+    }
+    
+    standBtn.disabled = true;
+    hitBtn.disabled = true;
+    newGameBtn.disabled = false;
+	betInput.disabled = false;
+    message.innerHTML = string;
+    gameprogress = false;
+    if(money <=0 )
+        message.innerHTML = "busted";
+    else{
+        
+
+        playerCards = [];
+        dealerCards = [];
+        dealerCount = 0;
+        playerCount = 0;
+        
+    }
+}
+
+
+
+
+//new game button listener
+newGameBtn.addEventListener("click", function(){
+    gameprogress = true;
+    startGame();
+})
+
+// hit button listner and hit function
+hitBtn.addEventListener("click", function (){
     if(!gameprogress)
         return;
     standBtn.disabled = true;
@@ -401,12 +444,10 @@ function hit(){
     cardDeal(playerCards,playerSide, playerCount, false, Deck)
     playerCount++;
     checking();
+})
 
-}
-
-// the stand function for when the player stands
-function stand()
-{
+// stand button list and stand function
+standBtn.addEventListener("click", function() {
     if(!gameprogress)
         return;
     hitBtn.disabled = true;
@@ -416,21 +457,18 @@ function stand()
     tempcode = "<img src ='".concat(tempstring).concat("'></>");
     dealerSide[1].innerHTML = tempcode;
     dealerCheck();
-}
-
-
-//new game button listener
-newGameBtn.addEventListener("click", function(){
-    gameprogress = true;
-    startGame();
 })
 
-// hit button listner
-hitBtn.addEventListener("click", hit)
-
-// stand button list
-standBtn.addEventListener("click", stand)
-
+// resets the money 
+reset.addEventListener("click", function () {
+    if(moneyData < 1000){
+        localStorage.setItem("fromLocal", 1000);
+        moneyData = Number(localStorage.getItem("fromLocal"));
+        money.innerHTML = moneyData;
+    }
+    else
+        message.innerHTML = "You have more money than the reset value.";
+})
 
 
 // found out how to do this here

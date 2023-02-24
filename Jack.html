@@ -17,8 +17,9 @@
 		
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/dbefaf0046.js" crossorigin="anonymous"></script>
 		<!-- Title tags changes the title-->
 		<Title class = "see">Black Jack</title>
 	</head>
@@ -26,11 +27,13 @@
     <body>
         
 		<h1>Welcome to Black Jack</h1>
+        <p></p>
+        
         
 		
         
         <table id = "table">
-			<caption><div id = "message">Hello There</div><div id = "main"><a href = "../p1.html">Back to Main</a></div></caption>
+			<caption><div id = "message">Hello There</div><div id = "main"><button id="reset" class = "reset">Reset Money</button>   <a href = "https://bicyclecards.com/how-to-play/blackjack/"><i class="fa-solid fa-question"></i></a></div></caption>
             <thead>
                 <tr>
                     <td><div class = "see">Dealer's Cards:</div></td>
@@ -76,7 +79,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <div class = "see">Your Bread Crumbs</div>
+                        <div class = "see">Your Money</div>
                         <div class = "see" id = "uMoney"></div>
                     </td>
                     <td>
@@ -92,6 +95,7 @@
 
         
         <script src = "./javascript/Black.js"></script>
+        
     </body>
         
 
