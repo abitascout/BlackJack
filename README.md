@@ -3,7 +3,7 @@
 
 
 ## How to run the Black Jack Game
-To run the game all  you need to do is download all the files. Once the files are downloaded and not in a zip folder just open the Jack.hmtl page to play the game.
+To run the game all you need to do is download all the files and install Node.js. Once the files are downloaded and not in a zip folder just open the Jack.hmtl page to play the game.
 
 ## Base game rules.
 This game follows the base game rules provided by the following link
